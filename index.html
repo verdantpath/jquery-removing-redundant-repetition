@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>JQuery Removing Redundant Repetition</title>
+
+</head>
+<body>
+
+
+<script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+<script type="text/Javascript">
+(function($) {
+  $(document).ready(function() {
+    // Set visibility at startup
+    $('#state').toggle( $('#country').val() == 'US' );
+    $('#province').toggle( $('#country').val() == 'CA' );
+
+    // Update visibility when county selector changes via mouse
+    $('#country').change( function() {
+      $('#state').toggle( $(this).val() == 'US' );
+      $('#province').toggle( $(this).val() == 'CA' );
+    });
+
+    //Also update when country selector changes via keyboard
+    $('#country').keyup( function() {
+      $('#state').toggle( $(this).val() == 'US' );
+      $('#province').toggle( $(this).val() == 'CA' );
+    });
+  });
+})(jQuery);
+
+</script>
+</body>
+</html>
