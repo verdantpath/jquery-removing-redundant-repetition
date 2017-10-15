@@ -6,8 +6,8 @@
 <!-- <a href="#" id="state">State</a>
 <a href="#" id="province">Province</a> -->
 <form>
-  <input type="radio" id="state">State</input>
-  <input type="radio" id="province">Province</input>
+  <p id="state">State</p>
+  <p id="province">Province</p>
   <select id="country">
     <option value="US">US</option>
     <option value="CA">CA</option>
@@ -21,23 +21,46 @@
 
 <script type="text/Javascript">
 (function($) {
-  $(document).ready(function() {
-    // Set visibility at startup
-    $('#state').toggle( $('#country').val() == 'US' );
-    $('#province').toggle( $('#country').val() == 'CA' );
+  // $(document).ready(function() {
+  //   // Set visibility at startup
+  //   $('#state').toggle( $('#country').val() == 'US' );
+  //   $('#province').toggle( $('#country').val() == 'CA' );
+  //
+  //   // Update visibility when county selector changes via mouse
+  //   $('#country').change( function() {
+  //     $('#state').toggle( $(this).val() == 'US' );
+  //     $('#province').toggle( $(this).val() == 'CA' );
+  //   });
+  //
+  //   //Also update when country selector changes via keyboard
+  //   $('#country').keyup( function() {
+  //     $('#state').toggle( $(this).val() == 'US' );
+  //     $('#province').toggle( $(this).val() == 'CA' );
+  //   });
+  // });
 
-    // Update visibility when county selector changes via mouse
-    $('#country').change( function() {
-      $('#state').toggle( $(this).val() == 'US' );
-      $('#province').toggle( $(this).val() == 'CA' );
-    });
+  // $(document).ready(function() {
+  //   var $country = $('#country');
+  //
+  //   function setVisibility() {
+  //     var value = $country.val();
+  //     $('#state').toggle( value == 'US' );
+  //     $('#province').toggle( value == 'CA' );
+  //   }
+  //
+  //   setVisibility();
+  //   $country.bind( 'change keyup', setVisibility );
+  // });
 
-    //Also update when country selector changes via keyboard
-    $('#country').keyup( function() {
-      $('#state').toggle( $(this).val() == 'US' );
-      $('#province').toggle( $(this).val() == 'CA' );
-    });
-  });
+  $('#country')
+    .bind( 'change keyup', function() {
+      var value = $(this).val();
+      $('#state').toggle( value == 'US' );
+      $('#province').toggle( value == 'CA' );
+    })
+    .trigger('change');
+
+
 })(jQuery);
 
 </script>
